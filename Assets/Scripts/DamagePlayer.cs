@@ -7,7 +7,7 @@ namespace DJD{
 public class DamagePlayer : MonoBehaviour
 {
 
-    public int damage = 25;
+    public int damage = 35;
     private void OnTriggerEInter(Collider other) {
         {
             PlayerStats playerStats = other.GetComponent<PlayerStats>();
