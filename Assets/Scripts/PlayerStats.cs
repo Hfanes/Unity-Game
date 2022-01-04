@@ -9,7 +9,7 @@ public class PlayerStats : MonoBehaviour
     public int healthLevel = 10;
     public int maxHealth;
     public int currenthealth;
-    public BarSlide staminaBar;
+    public StaminaBar staminaBar;
     public HealthBar healthBar;
 
     AnimatorHandler animatorHandler;
@@ -21,7 +21,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake() {
         healthBar = FindObjectOfType<HealthBar>();
-        staminaBar = FindObjectOfType<BarSlide>();
+        staminaBar = FindObjectOfType<StaminaBar>();
 
         animatorHandler = GetComponentInChildren<AnimatorHandler>(); 
     }

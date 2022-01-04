@@ -7,9 +7,9 @@ namespace DJD{
 public class StaminaBar : MonoBehaviour
 {
     public Slider slider;
-    private void Start(){
-        slider = GetComponent<Slider>();
-    }
+    // private void Start(){
+    //     slider = GetComponent<Slider>();
+    // }
     public void SetMaxStamina(int maxStamina)
     {
         slider.maxValue = maxStamina;
