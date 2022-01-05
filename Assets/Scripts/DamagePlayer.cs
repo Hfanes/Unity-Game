@@ -8,8 +8,9 @@ public class DamagePlayer : MonoBehaviour
 {
 
     public int damage = 35;
-    private void OnTriggerEInter(Collider other) {
+    private void OnTriggerEnter(Collider other) {
         {
+            Debug.Log("Sofre Dano");
             PlayerStats playerStats = other.GetComponent<PlayerStats>();
             if(playerStats != null){
                 playerStats.TakeDamage(damage);

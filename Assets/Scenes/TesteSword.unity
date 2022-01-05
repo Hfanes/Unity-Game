@@ -323,11 +323,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 226561680}
-  - component: {fileID: 226561679}
+  - component: {fileID: 226561681}
   - component: {fileID: 226561678}
   m_Layer: 0
   m_Name: Damage
-  m_TagString: Interactable
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -344,20 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319def3d913b97b4b9cd835ec673e206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 35
---- !u!135 &226561679
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226561677}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.44472873
-  m_Center: {x: 0, y: -0.055271268, z: 0}
+  damage: 15
 --- !u!4 &226561680
 Transform:
   m_ObjectHideFlags: 0
@@ -373,6 +360,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &226561681
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226561677}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &297613123
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +464,6 @@ GameObject:
   - component: {fileID: 394274200}
   - component: {fileID: 394274203}
   - component: {fileID: 394274202}
-  - component: {fileID: 394274201}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -485,20 +485,6 @@ Transform:
   m_Father: {fileID: 226561680}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &394274201
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394274199}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &394274202
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -558,7 +544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 453930909}
   - component: {fileID: 453930911}
-  - component: {fileID: 453930910}
+  - component: {fileID: 453930912}
   m_Layer: 5
   m_Name: Stamina Bar
   m_TagString: Untagged
@@ -587,19 +573,6 @@ RectTransform:
   m_AnchoredPosition: {x: 126.5, y: -72.89996}
   m_SizeDelta: {x: 179, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &453930910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453930908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37ebdd55acf673d46b466b75231b4601, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 453930911}
 --- !u!114 &453930911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,6 +624,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &453930912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453930908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f31211e10849b4cb08647d66302f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliderHP: {fileID: 2102074116}
+  sliderST: {fileID: 453930911}
 --- !u!1 &500783453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1054,7 @@ MonoBehaviour:
   healthLevel: 10
   maxHealth: 0
   currenthealth: 0
-  staminaBar: {fileID: 453930910}
+  staminaBar: {fileID: 453930912}
   healthBar: {fileID: 2102074115}
   currentStamina: 0
   staminaLevel: 10
@@ -2561,7 +2548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0.6
   interacatbleText: Pick Up Weapon
-  weapon: {fileID: 11400000, guid: 976193989de9b6d4e830f57dc2121025, type: 2}
+  weapon: {fileID: 11400000, guid: e918785454cfae64caca3aaad42061dc, type: 2}
 --- !u!4 &1760528631
 Transform:
   m_ObjectHideFlags: 0
@@ -3220,10 +3207,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2102074113}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c05170dacfb3da24fa905745d1cfd5f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 34f31211e10849b4cb08647d66302f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 2102074116}
+  sliderHP: {fileID: 2102074116}
+  sliderST: {fileID: 453930911}
 --- !u!114 &2102074116
 MonoBehaviour:
   m_ObjectHideFlags: 0

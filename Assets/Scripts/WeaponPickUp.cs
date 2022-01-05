@@ -34,6 +34,7 @@ public class WeaponPickUp : Interactable
         playerMovement.rigidbody.velocity = Vector3.zero; //parar quando se esta a apanhar o inventario
         animatorHandler.PlayTargetAnimation("Pick Up Item", true);
         playerInventory.weaponsInventory.Add(weapon);
+        playerInventory.ChangeOnPickUp();
         playerManager.ItemPopUp.GetComponentInChildren<Text>().text = weapon.itemName;
         playerManager.ItemPopUp.GetComponentInChildren<RawImage>().texture = weapon.itemIcon.texture;
         playerManager.ItemPopUp.SetActive(true);

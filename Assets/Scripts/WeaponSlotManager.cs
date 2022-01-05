@@ -50,7 +50,6 @@ public class WeaponSlotManager : MonoBehaviour
 
     public void LoadlightAttackDamageCollider(){
         lightAttackDamageCollider = rightHandSlot.currentweaponModel.GetComponentInChildren<DamageCollider>();
-
     }
     public void LoadheavyAttackDamageCollider(){
         heavyAttackDamageCollider = rightHandSlot.currentweaponModel.GetComponentInChildren<DamageCollider>();
