@@ -7,7 +7,6 @@ namespace DJD{
 public class DamageCollider : MonoBehaviour
 {
 
-    // Collider damageCollider;
     MeshCollider damageCollider ;
     public int currentWeaponDamage;
 

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ce43f9427b4952448e2e68c0b31b495, type: 3}
-  m_Name: Sword3
+  m_Name: Sword4
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 5d1c87b0a39032741ab3792e38fb71a0, type: 3}
-  itemName: Sword3
-  modelPrefab: {fileID: 7023147579349823841, guid: 9efa8a168bef6c241a4333233c0b953e, type: 3}
+  itemIcon: {fileID: 21300000, guid: 5187a68d50093c14d904c886d42ba222, type: 3}
+  itemName: Sword4
+  modelPrefab: {fileID: 7791734480124578333, guid: 90ed95609fee090479df66ea91b84034, type: 3}
   isUnarmed: 0
   OH_Light_Attack_1: Male Attack 1
   OH_Heavy_Attack_1: Male Attack 3
-  lightDamage: 25
-  heavyDamage: 35
+  lightDamage: 35
+  heavyDamage: 46
   baseStamina: 20
-  lightAttackMultiplier: 2
-  heavyAttackMultiplier: 3
+  lightAttackMultiplier: 3
+  heavyAttackMultiplier: 4

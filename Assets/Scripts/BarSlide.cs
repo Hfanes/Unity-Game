@@ -3,30 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DJD{
+
 public class BarSlide : MonoBehaviour
 {
-    public Slider slider;
+    public Slider sliderHP;
+    public Slider sliderST;
+
     public void SetMaxHealth(int maxHealth)
     {
-        slider.maxValue = maxHealth;
-        slider.value = maxHealth;
+        sliderHP.maxValue = maxHealth;
+        sliderHP.value = maxHealth;
     }
     public void SetCurrentHealth(int currenthealth)
     {
-        slider.value = currenthealth;
+        sliderHP.value = currenthealth;
     }
     public void SetMaxStamina(int maxStamina)
     {
-        slider.maxValue = maxStamina;
-        slider.value = maxStamina;
+        sliderST.maxValue = maxStamina;
+        sliderST.value = maxStamina;
     }
     public void SetCurrentStamina(int currentStamina)
     {
-        slider.value = currentStamina;
+        sliderST.value = currentStamina;
     }
-
-
-
- }   
 }
