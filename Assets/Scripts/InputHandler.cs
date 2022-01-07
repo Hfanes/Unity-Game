@@ -42,6 +42,13 @@ public class InputHandler : MonoBehaviour
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
             inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+            inputActions.PlayerActions.LightAttack.performed += i => LightAttack_Input = true;
+            inputActions.PlayerActions.HeavyAttack.performed += i => HeavyAttack_Input = true;
+            inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
+            inputActions.PlayerActions.E.performed += i => e_Input = true;        
+
+
+
         }
         inputActions.Enable(); 
     }
@@ -54,8 +61,6 @@ public class InputHandler : MonoBehaviour
         MoveInput(delta);
         HandleRollInput(delta);
         HandleAttackInput(delta);
-        HandleJumpInput();
-        HandleInteractingInput();
     }
     
     private void MoveInput(float delta){
@@ -82,8 +87,6 @@ public class InputHandler : MonoBehaviour
     }
 
     private void HandleAttackInput(float delta){
-        inputActions.PlayerActions.LightAttack.performed += i => LightAttack_Input = true;
-        inputActions.PlayerActions.HeavyAttack.performed += i => HeavyAttack_Input = true;
         if(LightAttack_Input)
         {
             playerAttacker.HandleLightAttack(playerAttacker.weapon);
@@ -94,14 +97,7 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    private void HandleJumpInput(){
-        inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
-    }
-
-    private void HandleInteractingInput(){
-        inputActions.PlayerActions.E.performed += i => e_Input = true;        
-    }
-    
+  
 
 
 

@@ -59,8 +59,7 @@ namespace DJD{
 
         private void FixedUpdate() {
             float delta = Time.fixedDeltaTime;  
-
-        
+            
         }
 
         private void LateUpdate() { //so poder ser clicado ou feito uma vez por frame
@@ -74,8 +73,8 @@ namespace DJD{
 
             float delta = Time.fixedDeltaTime;    
             if(cameraHandler != null){
-            cameraHandler.FollowTarget(delta);
-            cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+                cameraHandler.FollowTarget(delta);
+                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
             }
 
             if (isInAir){

@@ -56,7 +56,6 @@ namespace DJD{
             playerManager.isGrounded = true;
             ignoreForGroundCheck = ~(1 << 8 | 1 << 11);
 
-
         }
 
     
@@ -211,6 +210,7 @@ namespace DJD{
                 }
              }
         }
+		
 
         public void HandleJumping(){
             if(playerManager.isInteracting)
@@ -221,7 +221,7 @@ namespace DJD{
                 if(playerManager.isGrounded)
                 {
                     animatorHandler.anim.SetBool("isInAir", true);
-                    // animatorHandler.PlayTargetAnimation("Male Jump Up", false);
+                    animatorHandler.PlayTargetAnimation("Male Jump Up", false);
                     Debug.Log("Jump");
 
                     rigidbody.AddForce(new Vector3(0, 200, 0), ForceMode.Impulse);
@@ -236,6 +236,7 @@ namespace DJD{
 
             
         }
+        
 
 
  }   

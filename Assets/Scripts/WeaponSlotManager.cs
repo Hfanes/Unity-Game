@@ -17,12 +17,15 @@ public class WeaponSlotManager : MonoBehaviour
 
     PlayerStats playerStats;
     EnemyStats enemy;
+    QuickSlotsUI quickSlotsUI;
 
 
     private void Awake() {
         WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         playerStats = GetComponentInParent<PlayerStats>();
         playerInventory = GetComponentInParent<PlayerInventory>();
+        quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
+
         foreach(WeaponHolderSlot weaponSlot in weaponHolderSlots) //pecorre o playermodel para ver se é na esq ou direita
         {
             if(weaponSlot.isLeftHandslot)
@@ -46,6 +49,7 @@ public class WeaponSlotManager : MonoBehaviour
         rightHandSlot.LoadWeaponModel(weaponItem);
         LoadlightAttackDamageCollider();
         LoadheavyAttackDamageCollider();
+        quickSlotsUI.UpdateWeaponIconUI(weaponItem);
     }
 
     public void LoadlightAttackDamageCollider(){
