@@ -40,6 +40,8 @@ public class WeaponPickUp : Interactable
         playerManager.ItemPopUp.SetActive(true);
         Destroy(gameObject);
 
+        
+
     }
 
 
