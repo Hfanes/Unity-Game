@@ -35,7 +35,7 @@ namespace DJD{
         [SerializeField] float walkingSpeed = 1;
         
         [SerializeField] float rotationSpeed = 10;
-        [SerializeField] float fallingSpeed = 30;
+        [SerializeField] float fallingSpeed = 50;
 
 
         // [Header("Jump")]
@@ -212,7 +212,7 @@ namespace DJD{
         }
 		
 
-        public void HandleJumping(){
+        public void HandleJumping(float delta){
             if(playerManager.isInteracting)
             {
                 return;

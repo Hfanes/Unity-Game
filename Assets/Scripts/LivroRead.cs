@@ -16,10 +16,8 @@ public class LivroRead : Interactable
     private void ReadBook(PlayerManager playerManager)
     {
         PlayerMovement playerMovement;
-        PlayerInventory playerInventory;
         AnimatorHandler animatorHandler;
-
-        playerInventory = playerManager.GetComponent<PlayerInventory>();
+        
         playerMovement = playerManager.GetComponent<PlayerMovement>();
         animatorHandler = playerManager.GetComponentInChildren<AnimatorHandler>();
 

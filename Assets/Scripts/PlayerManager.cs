@@ -50,10 +50,11 @@ namespace DJD{
             playerMovement.HandleMovement(delta);
             playerMovement.HandleRollingAndSprinting(delta);
             playerMovement.HandleFalling(delta, playerMovement.moveDirection);
-            playerMovement.HandleJumping();
+            playerMovement.HandleJumping(delta);
 
             CheckForInteractableObject();
             ReadBook();
+            Open();
             
         }
 
@@ -151,6 +152,38 @@ namespace DJD{
                 {
                     BookPopUp.SetActive(false);
                 }
+            }
+
+
+        }
+
+        public void Open(){
+            RaycastHit hit;
+            if(Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers)){
+                if(hit.collider.tag == "Interactable")
+                {
+                    Interactable interactableOject = hit.collider.GetComponent<Interactable>();
+                    if(interactableOject != null)
+                    {
+
+                        if(inputHandler.e_Input)
+                        {
+                            hit.collider.GetComponent<Interactable>().Interact(this);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // if(InteractionBookPopUp != null)
+                // {
+                //     InteractionBookPopUp.SetActive(false); //Se sair da zona o pop up desparece
+                // }
+
+                // if(BookPopUp != null && inputHandler.e_Input)
+                // {
+                //     BookPopUp.SetActive(false);
+                // }
             }
 
 

@@ -15,7 +15,7 @@ public class EnemyStats : MonoBehaviour
     public GameObject enemy;
 
     private void Awake(){
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start() {
