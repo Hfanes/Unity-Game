@@ -14,10 +14,13 @@ public class EnemyMovement : MonoBehaviour
     Animator animator;
     NavMeshAgent navMeshAgent;
     public float distanceFromTarget;
-    public float stoppingDistance = 1f;
+    public float stoppingDistance = 2f;
     public float rotationSpeed = 15;
-    Rigidbody enemyRigidbody;
+    public Rigidbody enemyRigidbody;
     EnemyStats enemyStats;
+    EnemyAnimatorManager enemyAnimatorManager;
+
+    
 
 
     private void Awake() {
@@ -26,6 +29,7 @@ public class EnemyMovement : MonoBehaviour
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         enemyRigidbody = GetComponent<Rigidbody>();
         enemyStats = GetComponent<EnemyStats>();
+        enemyAnimatorManager = GetComponent<EnemyAnimatorManager>();
 
     }
 
@@ -58,6 +62,9 @@ public class EnemyMovement : MonoBehaviour
     }
 
     public void HandleMoveToTarget(){
+        if(enemyManager.isPreformingAction)
+        return;
+        
         Vector3 targetDirection = currentTarget.transform.position - transform.position;
         distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
         float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
@@ -67,37 +74,30 @@ public class EnemyMovement : MonoBehaviour
         //se tiver a fazer algo parar o movimento
         if(enemyManager.isPreformingAction)
         {
-            animator.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
+            enemyAnimatorManager.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
+
             navMeshAgent.enabled = false;
         }
         else{
             if(distanceFromTarget > stoppingDistance)
             {
-                animator.SetFloat("Vertical", 1, 0.1f, Time.deltaTime);
-                // float delta = Time.deltaTime;
-                // enemyRigidbody.drag = 0;
-                // Vector3 deltaPosition = animator.deltaPosition;
-                // Vector3 velocity = deltaPosition / delta;
-                // enemyRigidbody.velocity = velocity;
-
+                enemyAnimatorManager.anim.SetFloat("Vertical", 1, 0.1f, Time.deltaTime);
                 targetDirection.Normalize();
                 targetDirection.y = 0;
                 float speed = 2;
                 targetDirection *= speed;
                 Vector3 projectedVelocity = Vector3.ProjectOnPlane(targetDirection, Vector3.up);
                 enemyRigidbody.velocity = projectedVelocity;
-
             }
-            else if(distanceFromTarget <= stoppingDistance)
+            else if(distanceFromTarget < stoppingDistance)
             {
-                animator.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
+
+                enemyAnimatorManager.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
             }
         }
 
         HandleRotatioTowardsTarget();
         }
-
-        
         navMeshAgent.transform.localPosition = Vector3.zero;
         navMeshAgent.transform.localRotation = Quaternion.identity;
     }
@@ -132,6 +132,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
 
-
- }
+            
+    
+}
 }

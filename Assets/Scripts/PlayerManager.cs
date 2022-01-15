@@ -52,11 +52,14 @@ namespace DJD{
             playerMovement.HandleFalling(delta, playerMovement.moveDirection);
             playerMovement.HandleJumping(delta);
 
+
             CheckForInteractableObject();
             ReadBook();
             Open();
             
         }
+
+        
 
         private void FixedUpdate() {
             float delta = Time.fixedDeltaTime;  
@@ -116,7 +119,6 @@ namespace DJD{
                     ItemPopUp.SetActive(false);
                 }
             }
-
 
         }
 

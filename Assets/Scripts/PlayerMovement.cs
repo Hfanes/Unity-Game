@@ -37,12 +37,9 @@ namespace DJD{
         [SerializeField] float rotationSpeed = 10;
         [SerializeField] float fallingSpeed = 50;
 
+  
 
-        // [Header("Jump")]
-        
-
-
-        
+       
         void Start()
         {
             playerManager = GetComponent<PlayerManager>();
@@ -57,6 +54,7 @@ namespace DJD{
             ignoreForGroundCheck = ~(1 << 8 | 1 << 11);
 
         }
+        
 
     
         Vector3 normalVector;
@@ -93,7 +91,7 @@ namespace DJD{
             }
             moveDirection = cameraObject.forward * inputHandler.vertical;
             moveDirection += cameraObject.right * inputHandler.horizontal;
-            moveDirection. Normalize();
+            moveDirection.Normalize();
             moveDirection.y = 0;
             float speed = movementSpeed;
 
@@ -213,28 +211,24 @@ namespace DJD{
 		
 
         public void HandleJumping(float delta){
-            if(playerManager.isInteracting)
-            {
-                return;
-            }
-            if(inputHandler.jump_Input){
-                if(playerManager.isGrounded)
-                {
+             if(playerManager.isInteracting)
+             {
+                 return;
+             }
+             if(inputHandler.jump_Input  && playerManager.isGrounded){
                     animatorHandler.anim.SetBool("isInAir", true);
                     animatorHandler.PlayTargetAnimation("Male Jump Up", false);
                     Debug.Log("Jump");
 
-                    rigidbody.AddForce(new Vector3(0, 200, 0), ForceMode.Impulse);
-                    
+                    rigidbody.AddForce(new Vector3(0, 100, 0),  ForceMode.Impulse);
+                  
                     if(playerManager.isInAir){
                         rigidbody.AddForce(-Vector3.up * fallingSpeed);
                     } 
-                    
+                                             
                 }
-                             
-            }
 
-            
+
         }
         
 
