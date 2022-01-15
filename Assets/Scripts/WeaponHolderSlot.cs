@@ -7,7 +7,7 @@ namespace DJD{
 public class WeaponHolderSlot : MonoBehaviour
 {
     public Transform parentoverride;
-    public bool isLeftHandslot;
+    // public bool isLeftHandslot;
     public bool isRightHandSlot;
     public GameObject currentweaponModel;
 

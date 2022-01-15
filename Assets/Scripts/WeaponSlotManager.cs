@@ -28,24 +28,15 @@ public class WeaponSlotManager : MonoBehaviour
 
         foreach(WeaponHolderSlot weaponSlot in weaponHolderSlots) //pecorre o playermodel para ver se é na esq ou direita
         {
-            if(weaponSlot.isLeftHandslot)
-            {
-                leftHandSlot = weaponSlot;
-            }
-            else if (weaponSlot.isRightHandSlot)
+            if (weaponSlot.isRightHandSlot)
             {
                 rightHandSlot = weaponSlot;
             }
         }    
     }
 
-    public void LoadWeaponOnSlot(WeaponItem weaponItem, bool isLeft)
+    public void LoadWeaponOnSlot(WeaponItem weaponItem)
     {
-        if(isLeft)
-        {
-            leftHandSlot.LoadWeaponModel(weaponItem);
-        }
-        else
         rightHandSlot.LoadWeaponModel(weaponItem);
         LoadlightAttackDamageCollider();
         LoadheavyAttackDamageCollider();
