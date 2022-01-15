@@ -18,12 +18,12 @@ public class BarSlide : MonoBehaviour
     {
         sliderHP.value = currenthealth;
     }
-    public void SetMaxStamina(int maxStamina)
+    public void SetMaxStamina(float maxStamina)
     {
         sliderST.maxValue = maxStamina;
         sliderST.value = maxStamina;
     }
-    public void SetCurrentStamina(int currentStamina)
+    public void SetCurrentStamina(float currentStamina)
     {
         sliderST.value = currentStamina;
     }

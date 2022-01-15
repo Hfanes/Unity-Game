@@ -13,9 +13,14 @@ public class PlayerStats : MonoBehaviour
     public BarSlide healthBar;
 
     AnimatorHandler animatorHandler;
-    public int currentStamina;
+    public float currentStamina;
     public int staminaLevel = 10;
-    public int maxStamina;
+    public float maxStamina;
+    public float staminaRegenAmount = 30;
+    public float staminaRegenTimer = 0;
+
+    PlayerManager playerManager;
+
 
 
 
@@ -24,6 +29,7 @@ public class PlayerStats : MonoBehaviour
         staminaBar = FindObjectOfType<BarSlide>();
 
         animatorHandler = GetComponentInChildren<AnimatorHandler>(); 
+        playerManager = GetComponent<PlayerManager>();
     }
     void Start(){
         maxHealth = SetMaxHealthFromHealthLevel();
@@ -33,17 +39,27 @@ public class PlayerStats : MonoBehaviour
         maxStamina = SetMaxStaminaFromStaminaLevel();
         currentStamina = maxStamina;
         staminaBar.SetMaxStamina(maxStamina);
+        
     }
 
     private int SetMaxHealthFromHealthLevel(){
         maxHealth = healthLevel * 10;
         return  maxHealth;
     }
-    private int SetMaxStaminaFromStaminaLevel(){
+    private float SetMaxStaminaFromStaminaLevel(){
         maxStamina  = staminaLevel * 10;
         return  maxStamina;
     }
-    
+
+    private void OnTriggerEnter(Collider other) { //Damage do inimigo (ainda nao ta a funcionar)
+        if(other.gameObject.tag == "Enemy Sword"){
+             PlayerStats playerStats = other.GetComponent<PlayerStats>();
+            if(playerStats != null){
+                playerStats.TakeDamage(10);
+            }
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         currenthealth = currenthealth - damage;
@@ -58,11 +74,28 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void TakeStaminaDamage(int damage)
+    public void TakeStaminaDamage(float stamina)
     {
-        currentStamina = currentStamina - damage;
+        currentStamina = currentStamina - stamina;
         staminaBar.SetCurrentStamina(currentStamina);
+    }
 
+
+    public void RegenStamina(){
+        if(playerManager.isInteracting)
+        {
+            staminaRegenTimer = 0;
+        }
+        else
+        {
+            staminaRegenTimer += Time.deltaTime;
+            if(currentStamina < maxStamina && staminaRegenTimer > 1f)
+            {
+                currentStamina += staminaRegenAmount * Time.deltaTime;
+                staminaBar.SetCurrentStamina(Mathf.RoundToInt(currentStamina));
+            }
+        }
+        
     }
 
 

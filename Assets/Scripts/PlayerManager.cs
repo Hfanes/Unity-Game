@@ -7,6 +7,9 @@ namespace DJD{
     {
         InputHandler inputHandler;
         PlayerMovement playerMovement;
+        AnimatorHandler animatorHandler;
+
+        PlayerStats playerStats;
         InteractableUI interactableUI;
         [Header("PickUp")]
         public GameObject InteractionPopUp;
@@ -27,6 +30,7 @@ namespace DJD{
 
 
 
+
         private void Awake() {
             cameraHandler = FindObjectOfType<CameraHandler>();
         }
@@ -37,6 +41,9 @@ namespace DJD{
             anim = GetComponentInChildren<Animator>();
             playerMovement = GetComponent<PlayerMovement>();
             interactableUI = FindObjectOfType<InteractableUI>();
+            playerStats = GetComponent<PlayerStats>();
+            animatorHandler = GetComponentInChildren<AnimatorHandler>();
+
         }
 
         void Update()
@@ -52,6 +59,7 @@ namespace DJD{
             playerMovement.HandleFalling(delta, playerMovement.moveDirection);
             playerMovement.HandleJumping(delta);
 
+            playerStats.RegenStamina();  
 
             CheckForInteractableObject();
             ReadBook();
@@ -188,6 +196,14 @@ namespace DJD{
                 // }
             }
 
+
+        }
+
+        public void OpenChestInteraction(Transform PlayerStandChest)
+        {
+            playerMovement.rigidbody.velocity = Vector3.zero; //para o jogador
+            transform.position = PlayerStandChest.transform.position;
+            animatorHandler.PlayTargetAnimation("Chest Open", true);
 
         }
 

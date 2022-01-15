@@ -8,6 +8,7 @@ namespace DJD{
     public class PlayerMovement : MonoBehaviour
     {
         PlayerManager playerManager;
+        PlayerStats playerStats;
         Transform cameraObject;
         InputHandler inputHandler;
         public Vector3 moveDirection;
@@ -36,17 +37,22 @@ namespace DJD{
         
         [SerializeField] float rotationSpeed = 10;
         [SerializeField] float fallingSpeed = 50;
+        [SerializeField] int rollStaminaCost = 10;
+        [SerializeField] float sprintStaminaCost = 0.1f;
+
+
 
   
 
-       
+       private void Awake() {
+        playerManager = GetComponent<PlayerManager>();
+        rigidbody = GetComponent<Rigidbody>();
+        inputHandler = GetComponent<InputHandler>();
+        animatorHandler = GetComponentInChildren<AnimatorHandler>();
+        playerStats = GetComponent<PlayerStats>();
+       }
         void Start()
         {
-            playerManager = GetComponent<PlayerManager>();
-            rigidbody = GetComponent<Rigidbody>();
-            inputHandler = GetComponent<InputHandler>();
-            animatorHandler = GetComponentInChildren<AnimatorHandler>();
-
             cameraObject = Camera.main.transform;
             myTransform = transform;
             animatorHandler.Initialize();
@@ -99,6 +105,7 @@ namespace DJD{
                 speed = sprintSpeed;
                 playerManager.isSprinting = true;
                 moveDirection *= speed;
+                //playerStats.TakeStaminaDamage(sprintStaminaCost);
             }
             else
             {
@@ -128,7 +135,12 @@ namespace DJD{
             if(animatorHandler.anim.GetBool("isInteracting")){
                 return;
             }
-            
+            //stamina dependant
+            if(playerStats.currentStamina <= 0)
+            {
+                return;
+            }
+
             if (inputHandler.rollFlag){
                 moveDirection = cameraObject.forward * inputHandler.vertical;
                 moveDirection += cameraObject.right * inputHandler.horizontal;
@@ -137,6 +149,7 @@ namespace DJD{
                     moveDirection.y = 0;
                     Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                     myTransform.rotation = rollRotation;
+                    playerStats.TakeStaminaDamage(rollStaminaCost);
                 }
             }
         }
@@ -215,6 +228,11 @@ namespace DJD{
              {
                  return;
              }
+             //stamina dependant
+            if(playerStats.currentStamina <= 0)
+            {
+                return;
+            }
              if(inputHandler.jump_Input  && playerManager.isGrounded){
                     animatorHandler.anim.SetBool("isInAir", true);
                     animatorHandler.PlayTargetAnimation("Male Jump Up", false);

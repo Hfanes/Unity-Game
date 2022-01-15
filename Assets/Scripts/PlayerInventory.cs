@@ -7,7 +7,6 @@ public class PlayerInventory : MonoBehaviour
 {
     WeaponSlotManager WeaponSlotManager;
     public WeaponItem rightWeapon;
-    public WeaponItem leftWeapon;
     public WeaponItem unarmedWeapon;
 
 

@@ -29,9 +29,11 @@ public class InputHandler : MonoBehaviour
     Vector2 movementInput;
     Vector2 cameraInput;
     PlayerMovement playerMovement;
+    PlayerStats playerStats;
 
     private void Awake(){
         playerAttacker = GetComponent<PlayerAttacker>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
 
@@ -45,7 +47,14 @@ public class InputHandler : MonoBehaviour
             inputActions.PlayerActions.LightAttack.performed += i => LightAttack_Input = true;
             inputActions.PlayerActions.HeavyAttack.performed += i => HeavyAttack_Input = true;
             inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
-            inputActions.PlayerActions.E.performed += i => e_Input = true;        
+            inputActions.PlayerActions.E.performed += i => e_Input = true;   
+            inputActions.PlayerActions.Roll.performed += i => b_Input = true;   
+            inputActions.PlayerActions.Roll.canceled += i => b_Input = false;   
+
+
+
+
+
 
 
 
@@ -72,14 +81,23 @@ public class InputHandler : MonoBehaviour
     }
 
     private void HandleRollInput(float delta){
-        b_Input = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+        //b_Input = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
         if(b_Input){
             rollInputTimer += delta;
-            sprintFlag = true;
+            if(playerStats.currentStamina <= 0)
+            {
+             sprintFlag = false;
+             b_Input = false;
+            }
+
+            if(moveAmount > 0.5f && playerStats.currentStamina > 0)
+            {
+                sprintFlag = true;
+            }
         }
         else{
+            sprintFlag = false;
             if(rollInputTimer > 0 && rollInputTimer <0.5f){
-                sprintFlag = false;
                 rollFlag = true;
             }
             rollInputTimer = 0;
