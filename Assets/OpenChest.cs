@@ -11,7 +11,7 @@ public class OpenChest : Interactable
     OpenChest openChest;
     public Transform PlayerStandChest;
     public GameObject itemSpawner; 
-    public WeaponItem itemInChest;
+    //public WeaponItem itemInChest;
 
     private void Awake() {
         animator = GetComponent<Animator>();
