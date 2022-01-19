@@ -151,6 +151,9 @@ namespace DJD{
                     myTransform.rotation = rollRotation;
                     playerStats.TakeStaminaDamage(rollStaminaCost);
                 }
+                else {
+                    animatorHandler.PlayTargetAnimation("backStep", true);
+                }
             }
         }
 

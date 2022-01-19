@@ -15,6 +15,8 @@ public class InteractableUI : MonoBehaviour
     [Header("ReadBook")]
     public Text interactableBookText;
     public Text bookText;
+    public RawImage BookIcon;
+
 
 
 

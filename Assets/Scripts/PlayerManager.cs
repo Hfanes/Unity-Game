@@ -31,6 +31,7 @@ namespace DJD{
 
 
 
+
         private void Awake() {
             cameraHandler = FindObjectOfType<CameraHandler>();
         }
@@ -81,12 +82,19 @@ namespace DJD{
             inputHandler.HeavyAttack_Input = false;
             inputHandler.jump_Input = false;
             inputHandler.e_Input = false;
+            inputHandler.menu_Input = false;
+
+            
 
 
             float delta = Time.fixedDeltaTime;    
             if(cameraHandler != null){
+                if(!inputHandler.gamePaused)
+                {
                 cameraHandler.FollowTarget(delta);
                 cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+                }
+                
             }
 
             if (isInAir){
@@ -97,7 +105,7 @@ namespace DJD{
 
         public void CheckForInteractableObject(){
             RaycastHit hit;
-            if(Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers)){
+            if(Physics.SphereCast(transform.position, 1f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers)){
                 if(hit.collider.tag == "Interactable")
                 {
                     Interactable interactableOject = hit.collider.GetComponent<Interactable>();
@@ -132,7 +140,7 @@ namespace DJD{
 
         public void ReadBook(){
             RaycastHit hit;
-            if(Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers)){
+            if(Physics.SphereCast(transform.position, 1f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers)){
                 if(hit.collider.tag == "Book")
                 {
                     Interactable interactableOject = hit.collider.GetComponent<Interactable>();
@@ -148,6 +156,7 @@ namespace DJD{
                         {
                             hit.collider.GetComponent<Interactable>().Interact(this);
                         }
+                        
                     }
                 }
             }
@@ -156,12 +165,14 @@ namespace DJD{
                 if(InteractionBookPopUp != null)
                 {
                     InteractionBookPopUp.SetActive(false); //Se sair da zona o pop up desparece
+                    BookPopUp.SetActive(false);
+
                 }
 
-                if(BookPopUp != null && inputHandler.e_Input)
-                {
-                    BookPopUp.SetActive(false);
-                }
+                // if(BookPopUp != null && inputHandler.e_Input)
+                // {
+                //     BookPopUp.SetActive(false);
+                // }
             }
 
 
@@ -204,8 +215,8 @@ namespace DJD{
             playerMovement.rigidbody.velocity = Vector3.zero; //para o jogador
             transform.position = PlayerStandChest.transform.position;
             animatorHandler.PlayTargetAnimation("Chest Open", true);
-
         }
+
 
         
 

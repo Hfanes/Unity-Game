@@ -8,6 +8,7 @@ public class DamagePlayer : MonoBehaviour
 {
 
     public int damage = 35;
+
     private void OnTriggerEnter(Collider other) {
         {
             Debug.Log("Sofre Dano");

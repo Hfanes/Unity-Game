@@ -20,6 +20,8 @@ public class PlayerStats : MonoBehaviour
     public float staminaRegenTimer = 0;
 
     PlayerManager playerManager;
+    MenusJogo menusJogo;
+
 
 
 
@@ -30,6 +32,8 @@ public class PlayerStats : MonoBehaviour
 
         animatorHandler = GetComponentInChildren<AnimatorHandler>(); 
         playerManager = GetComponent<PlayerManager>();
+        menusJogo = FindObjectOfType<MenusJogo>();
+
     }
     void Start(){
         maxHealth = SetMaxHealthFromHealthLevel();
@@ -71,6 +75,8 @@ public class PlayerStats : MonoBehaviour
             currenthealth = 0;
             animatorHandler.PlayTargetAnimation("Male Die", true);
             //Handle Player Death
+            menusJogo.gameOver();
+
         }
     }
 

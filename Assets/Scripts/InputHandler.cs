@@ -16,6 +16,9 @@ public class InputHandler : MonoBehaviour
     public bool Use_Input;
     public bool jump_Input;
     public bool e_Input;
+    public bool menu_Input;
+
+    
 
 
 
@@ -23,6 +26,10 @@ public class InputHandler : MonoBehaviour
     public bool rollFlag;
     public float rollInputTimer;
     public bool sprintFlag;
+    public bool menuFlag;
+    public bool gamePaused;
+
+
 
     PlayerControls  inputActions;
     PlayerAttacker playerAttacker;
@@ -30,10 +37,13 @@ public class InputHandler : MonoBehaviour
     Vector2 cameraInput;
     PlayerMovement playerMovement;
     PlayerStats playerStats;
+    MenusJogo menusJogo;
+
 
     private void Awake(){
         playerAttacker = GetComponent<PlayerAttacker>();
         playerStats = GetComponent<PlayerStats>();
+        menusJogo = FindObjectOfType<MenusJogo>();
     }
 
 
@@ -50,6 +60,8 @@ public class InputHandler : MonoBehaviour
             inputActions.PlayerActions.E.performed += i => e_Input = true;   
             inputActions.PlayerActions.Roll.performed += i => b_Input = true;   
             inputActions.PlayerActions.Roll.canceled += i => b_Input = false;   
+            inputActions.PlayerActions.Menu.performed += i => menu_Input = true;
+
 
 
 
@@ -70,6 +82,7 @@ public class InputHandler : MonoBehaviour
         MoveInput(delta);
         HandleRollInput(delta);
         HandleAttackInput(delta);
+        HandleOpenMeny();
     }
     
     private void MoveInput(float delta){
@@ -114,6 +127,27 @@ public class InputHandler : MonoBehaviour
             playerAttacker.HandleHeavyAttack(playerAttacker.weapon);
         }
     }
+
+    public void HandleOpenMeny(){
+            if(menu_Input)
+            {
+                menuFlag =! menuFlag ;
+                if(menuFlag)
+                {
+                    Time.timeScale = 0;
+                    gamePaused = true;
+                    menusJogo.MenuEntrar();
+                }
+                else
+                {
+
+                    Time.timeScale = 1;
+                    gamePaused = false;
+
+                    menusJogo.MenuSair();
+                }
+            }
+        }
 
 
 

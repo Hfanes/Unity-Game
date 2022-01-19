@@ -6,6 +6,8 @@ using UnityEngine.UI;
 namespace DJD{
 public class LivroRead : Interactable
 {
+    public Sprite BookIcon;
+
     public override void Interact(PlayerManager playerManager)
     {
         base.Interact(playerManager);
@@ -23,8 +25,13 @@ public class LivroRead : Interactable
 
 
         playerMovement.rigidbody.velocity = Vector3.zero; //parar quando se esta a apanhar o inventario
-        animatorHandler.PlayTargetAnimation("Pick Up Item", true);
-        playerManager.BookPopUp.GetComponentInChildren<Text>().text = "Historia Maravilhosa";
+        // animatorHandler.PlayTargetAnimation("Pick Up Item", true);
+        
+        //playerManager.BookPopUp.GetComponentInChildren<Text>().text = "Historia Maravilhosa";
+        //playerManager.ItemPopUp.GetComponentInChildren<RawImage>().texture = BookIcon.texture;
+
+        playerManager.BookPopUp.GetComponentInChildren<RawImage>().texture = BookIcon.texture;
+
         
         playerManager.BookPopUp.SetActive(true);
 

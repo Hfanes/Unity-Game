@@ -26,8 +26,9 @@ public class PlayerInventory : MonoBehaviour
 
     public void ChangeOnPickUp()
     {
-        rightWeapon = weaponsInventory[0];
-        WeaponSlotManager.LoadWeaponOnSlot(weaponsInventory[0]);
+        rightWeapon = weaponsInventory[weaponsInventory.Count -1];
+        WeaponSlotManager.LoadWeaponOnSlot(weaponsInventory[weaponsInventory.Count -1]);
+        
     }
 
     public void AddKey(Key.KeyType keyType)

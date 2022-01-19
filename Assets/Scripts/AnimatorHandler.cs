@@ -81,12 +81,17 @@ namespace DJD{
             if (playerManager.isInteracting == false){
              return;
             }
-            float delta = Time.deltaTime;
-            playerMovement.rigidbody.drag = 0;
-            Vector3 deltaPosition = anim.deltaPosition;
-            deltaPosition.y = 0;
-            Vector3 velocity = deltaPosition / delta;
-            playerMovement.rigidbody.velocity = velocity; 
+            
+            if(inputHandler.gamePaused == false)
+            {
+                float delta = Time.deltaTime;
+                playerMovement.rigidbody.drag = 0;
+                Vector3 deltaPosition = anim.deltaPosition;
+                deltaPosition.y = 0;
+                Vector3 velocity = deltaPosition / delta;
+                playerMovement.rigidbody.velocity = velocity; 
+            }
+            
         }
 
        

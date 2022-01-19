@@ -37,7 +37,7 @@ public class KeyPickUp : Interactable
 
 
         playerMovement.rigidbody.velocity = Vector3.zero; //parar quando se esta a apanhar o inventario
-        animatorHandler.PlayTargetAnimation("Pick Up Item", true);
+        //animatorHandler.PlayTargetAnimation("pickKey", true);
         // playerInventory.keyList.Add(Key.KeyType.Silver);
         playerInventory.AddKey(chave.GetKeyType());
 

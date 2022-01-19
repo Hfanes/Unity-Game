@@ -118,6 +118,7 @@ public class EnemyManager : MonoBehaviour
         {
             isPreformingAction = true;
             currentRecoveryTime = currentAttack.recoveryTime;
+            //animação
             enemyAnimatorManager.PlayTargetAnimation(currentAttack.actionAnimation, true);
             currentAttack = null;
         }
