@@ -18,8 +18,8 @@ MonoBehaviour:
   isUnarmed: 0
   OH_Light_Attack_1: Male Attack 1
   OH_Heavy_Attack_1: Male Attack 3
-  lightDamage: 25
-  heavyDamage: 35
-  baseStamina: 20
+  lightDamage: 15
+  heavyDamage: 18
+  baseStamina: 30
   lightAttackMultiplier: 2
   heavyAttackMultiplier: 3

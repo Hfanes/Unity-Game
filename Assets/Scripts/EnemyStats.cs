@@ -13,9 +13,10 @@ public class EnemyStats : MonoBehaviour
     Animator animator;
     public GameObject enemy;
     public bool isDead;
-
+    EnemyManager enemyManager;
     private void Awake(){
         animator = GetComponent<Animator>();
+        enemyManager = GetComponent<EnemyManager>();
     }
 
     private void Start() {
@@ -42,6 +43,7 @@ public class EnemyStats : MonoBehaviour
             animator.Play("Death");
             // enemy.tag = "Untagged";
             isDead = true;
+            enemyManager.enabled= false;
         }
     }
 

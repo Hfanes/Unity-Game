@@ -43,6 +43,10 @@ public class EnemyManager : MonoBehaviour
 
 
     private void HandleCurrentAction(){
+        if(enemyStats.isDead)
+        {
+            return;
+        }
         if(playerStats.isDead == false && enemyStats.isDead == false)
         {
             if(enemyMovement.currentTarget != null)
@@ -60,6 +64,10 @@ public class EnemyManager : MonoBehaviour
             }
             else if(enemyMovement.distanceFromTarget <= enemyMovement.stoppingDistance)
             {
+                if(enemyStats.isDead)
+        {
+            return;
+        }
                 enemyMovement.HandleRotatioTowardsTarget();
                 AttackTarget();
             }
@@ -72,6 +80,10 @@ public class EnemyManager : MonoBehaviour
     }
 
     private void GetNewAttack(){
+        if(enemyStats.isDead)
+        {
+            return;
+        }
         Vector3 targetsDirection = enemyMovement.currentTarget.transform.position - transform.position; 
         float viewableAngle = Vector3.Angle(targetsDirection, transform.forward);
         enemyMovement.distanceFromTarget = Vector3.Distance(enemyMovement.currentTarget.transform.position, transform.position);
@@ -119,6 +131,10 @@ public class EnemyManager : MonoBehaviour
 
     
     private void AttackTarget(){
+        if(enemyStats.isDead)
+        {
+            return;
+        }
 
         if(isPreformingAction)
         {
@@ -139,6 +155,10 @@ public class EnemyManager : MonoBehaviour
     }
     
     private void HandleRecoveryTimer(){
+        if(enemyStats.isDead)
+        {
+            return;
+        }
         if(currentRecoveryTime > 0)
         {
             currentRecoveryTime -= Time.deltaTime;

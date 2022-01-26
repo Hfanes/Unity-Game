@@ -67,6 +67,12 @@ public class EnemyMovement : MonoBehaviour
     public void HandleMoveToTarget(){
         if(enemyManager.isPreformingAction)
         return;
+
+        if(enemyStats.isDead)
+        {
+            return;
+        }
+            
         
         Vector3 targetDirection = currentTarget.transform.position - transform.position;
         distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
@@ -108,6 +114,10 @@ public class EnemyMovement : MonoBehaviour
 
     public void HandleRotatioTowardsTarget(){
         //rotate normal
+        if(enemyStats.isDead)
+        {
+            return;
+        }
         if(enemyManager.isPreformingAction)
         {
             Vector3 direction = currentTarget.transform.position -transform.position;
