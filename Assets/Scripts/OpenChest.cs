@@ -10,13 +10,17 @@ public class OpenChest : Interactable
     Animator animator;
     OpenChest openChest;
     public Transform PlayerStandChest;
-    public GameObject itemSpawner; 
-    //public WeaponItem itemInChest;
+    public GameObject itemSpawner;
+        //public WeaponItem itemInChest;
 
-    private void Awake() {
+        //sons
+        private AudioSource _sound;
+
+        private void Awake() {
         animator = GetComponent<Animator>();
         openChest = GetComponent<OpenChest>();
-    }
+            _sound = GetComponent<AudioSource>();
+        }
     public override void Interact(PlayerManager playerManager)
     {
         //Rodar o player em direçao ao chest
@@ -33,11 +37,13 @@ public class OpenChest : Interactable
 
         //open chest/animaçao
         animator.Play("ChestOpen");
+            _sound.Play();
 
 
 
-        //spawn item dentro para apanhar
-        StartCoroutine(SpawnItemInChest());
+            //spawn item dentro para apanhar
+            //spawn item dentro para apanhar
+            StartCoroutine(SpawnItemInChest());
         itemSpawner.SetActive(true);
 
         // itemSpawner.transform.position = PlayerStandChest.transform.position;

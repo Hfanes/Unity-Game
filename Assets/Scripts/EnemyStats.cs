@@ -14,10 +14,12 @@ public class EnemyStats : MonoBehaviour
     public GameObject enemy;
     public bool isDead;
     EnemyManager enemyManager;
-    private void Awake(){
+        private AudioSource _sound;
+        private void Awake(){
         animator = GetComponent<Animator>();
         enemyManager = GetComponent<EnemyManager>();
-    }
+            _sound = GetComponent<AudioSource>();
+        }
 
     private void Start() {
         maxHealth = SetMaxHealthFromHealthLevel();
@@ -35,7 +37,9 @@ public class EnemyStats : MonoBehaviour
         if(isDead)
         return;
         currentHealth = currentHealth - damage;
-        animator.Play("Damage");
+            _sound.Play();
+            animator.Play("Damage");
+
 
         if(currentHealth <= 0)
         {
