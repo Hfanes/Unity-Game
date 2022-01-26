@@ -37,7 +37,7 @@ public class OpenChest : Interactable
 
         //open chest/animaçao
         animator.Play("ChestOpen");
-            _sound.Play();
+        _sound.Play();
 
 
 
