@@ -118,11 +118,11 @@ public class InputHandler : MonoBehaviour
     }
 
     private void HandleAttackInput(float delta){
-        if(LightAttack_Input)
+        if(LightAttack_Input && playerStats.currenthealth > 0)
         {
             playerAttacker.HandleLightAttack(playerAttacker.weapon);
         }
-        if(HeavyAttack_Input)
+        if(HeavyAttack_Input && playerStats.currenthealth > 0)
         {
             playerAttacker.HandleHeavyAttack(playerAttacker.weapon);
         }
@@ -140,10 +140,8 @@ public class InputHandler : MonoBehaviour
                 }
                 else
                 {
-
                     Time.timeScale = 1;
                     gamePaused = false;
-
                     menusJogo.MenuSair();
                 }
             }

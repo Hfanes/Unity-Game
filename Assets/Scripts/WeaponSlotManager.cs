@@ -21,11 +21,11 @@ public class WeaponSlotManager : MonoBehaviour
 
 
     private void Awake() {
-        WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         playerStats = GetComponentInParent<PlayerStats>();
         playerInventory = GetComponentInParent<PlayerInventory>();
         quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
 
+        WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
         foreach(WeaponHolderSlot weaponSlot in weaponHolderSlots) //pecorre o playermodel para ver se é na esq ou direita
         {
             if (weaponSlot.isRightHandSlot)
@@ -70,21 +70,6 @@ public class WeaponSlotManager : MonoBehaviour
     public void DrainStaminaHeavy(){
         playerStats.TakeStaminaDamage(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.heavyAttackMultiplier));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
  }
 }

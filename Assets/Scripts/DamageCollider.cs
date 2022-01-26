@@ -41,9 +41,9 @@ public class DamageCollider : MonoBehaviour
          {
              EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
              if(enemyStats != null)
-                 {
-                     enemyStats.TakeDamage(currentWeaponDamage);
-                 }
+                {
+                    enemyStats.TakeDamage(currentWeaponDamage);
+                }
          }
      }
     

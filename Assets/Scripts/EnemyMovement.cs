@@ -19,6 +19,8 @@ public class EnemyMovement : MonoBehaviour
     public Rigidbody enemyRigidbody;
     EnemyStats enemyStats;
     EnemyAnimatorManager enemyAnimatorManager;
+    PlayerStats playerStats;
+
 
     
 
@@ -29,6 +31,7 @@ public class EnemyMovement : MonoBehaviour
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
         enemyRigidbody = GetComponent<Rigidbody>();
         enemyStats = GetComponent<EnemyStats>();
+        playerStats = FindObjectOfType<PlayerStats>();
         enemyAnimatorManager = GetComponent<EnemyAnimatorManager>();
 
     }
@@ -69,13 +72,12 @@ public class EnemyMovement : MonoBehaviour
         distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
         float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
 
-        if(enemyStats.currentHealth > 0)
+        if(enemyStats.currentHealth > 0 )
         {
         //se tiver a fazer algo parar o movimento
         if(enemyManager.isPreformingAction)
         {
             enemyAnimatorManager.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
-
             navMeshAgent.enabled = false;
         }
         else{
@@ -89,20 +91,22 @@ public class EnemyMovement : MonoBehaviour
                 Vector3 projectedVelocity = Vector3.ProjectOnPlane(targetDirection, Vector3.up);
                 enemyRigidbody.velocity = projectedVelocity;
             }
-            else if(distanceFromTarget < stoppingDistance)
+            else if(distanceFromTarget <= stoppingDistance)
             {
-
                 enemyAnimatorManager.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
             }
         }
 
         HandleRotatioTowardsTarget();
         }
+        else{
+            return;
+        }
         navMeshAgent.transform.localPosition = Vector3.zero;
         navMeshAgent.transform.localRotation = Quaternion.identity;
     }
 
-    private void HandleRotatioTowardsTarget(){
+    public void HandleRotatioTowardsTarget(){
         //rotate normal
         if(enemyManager.isPreformingAction)
         {

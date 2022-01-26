@@ -10,15 +10,17 @@ public class EnemyManager : MonoBehaviour
     EnemyMovement enemyMovement;
     
     [Header ("A.I Settings")]
-    public float detectionRadius = 20;
+    public float detectionRadius = 5;
     //Quanto maior e menor estes vvalores maior será a deteçao do enemigo
-    public float maximumDetectionAngle = 50;
-    public float minimumDetectionAngle = -50;
+    public float maximumDetectionAngle = 30;
+    public float minimumDetectionAngle = -30;
     public float currentRecoveryTime = 0;
     public EnemyAttackAction[] enemyAttacks;
     public EnemyAttackAction currentAttack;
     AnimatorHandler animatorHandler;
     EnemyAnimatorManager enemyAnimatorManager;
+    PlayerStats playerStats;
+    EnemyStats enemyStats;
 
 
 
@@ -27,6 +29,8 @@ public class EnemyManager : MonoBehaviour
         enemyMovement = GetComponent<EnemyMovement>();
         animatorHandler = GetComponentInChildren<AnimatorHandler>();
         enemyAnimatorManager = GetComponent<EnemyAnimatorManager>();
+        playerStats = FindObjectOfType<PlayerStats>();
+        enemyStats = FindObjectOfType<EnemyStats>();
     }
 
     private void Update() {
@@ -34,28 +38,37 @@ public class EnemyManager : MonoBehaviour
 
     private void FixedUpdate() {   
         HandleCurrentAction();
-
         HandleRecoveryTimer();
     }
 
 
     private void HandleCurrentAction(){
-        if(enemyMovement.currentTarget != null)
+        if(playerStats.isDead == false && enemyStats.isDead == false)
         {
-         enemyMovement.distanceFromTarget = Vector3.Distance(enemyMovement.currentTarget.transform.position, transform.position);
+            if(enemyMovement.currentTarget != null)
+            {
+             enemyMovement.distanceFromTarget = Vector3.Distance(enemyMovement.currentTarget.transform.position, transform.position);
+            }
+            if(enemyMovement.currentTarget == null)
+            {
+                enemyMovement.HandleDetection();
+            }
+            else if(enemyMovement.distanceFromTarget >= enemyMovement.stoppingDistance)
+            {
+                enemyMovement.HandleRotatioTowardsTarget();
+                enemyMovement.HandleMoveToTarget();
+            }
+            else if(enemyMovement.distanceFromTarget <= enemyMovement.stoppingDistance)
+            {
+                enemyMovement.HandleRotatioTowardsTarget();
+                AttackTarget();
+            }
         }
-        if(enemyMovement.currentTarget == null)
+        else
         {
-            enemyMovement.HandleDetection();
+            return;
         }
-        else if(enemyMovement.distanceFromTarget >= enemyMovement.stoppingDistance)
-        {
-            enemyMovement.HandleMoveToTarget();
-        }
-        else if(enemyMovement.distanceFromTarget <= enemyMovement.stoppingDistance)
-        {
-            AttackTarget();
-        }
+        
     }
 
     private void GetNewAttack(){
@@ -106,6 +119,7 @@ public class EnemyManager : MonoBehaviour
 
     
     private void AttackTarget(){
+
         if(isPreformingAction)
         {
             return;

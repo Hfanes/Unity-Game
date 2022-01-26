@@ -6,7 +6,6 @@ using UnityEngine;
 namespace DJD{
 public class PlayerStats : MonoBehaviour
 {
-    public int healthLevel = 10;
     public int maxHealth;
     public int currenthealth;
     public BarSlide staminaBar;
@@ -14,14 +13,14 @@ public class PlayerStats : MonoBehaviour
 
     AnimatorHandler animatorHandler;
     public float currentStamina;
-    public int staminaLevel = 10;
     public float maxStamina;
-    public float staminaRegenAmount = 30;
+    public float staminaRegenAmount = 50;
     public float staminaRegenTimer = 0;
 
     PlayerManager playerManager;
     MenusJogo menusJogo;
-
+    public bool isDead;
+    
 
 
 
@@ -47,25 +46,18 @@ public class PlayerStats : MonoBehaviour
     }
 
     private int SetMaxHealthFromHealthLevel(){
-        maxHealth = healthLevel * 10;
+        maxHealth = 150;
         return  maxHealth;
     }
     private float SetMaxStaminaFromStaminaLevel(){
-        maxStamina  = staminaLevel * 10;
+        maxStamina  = 150;
         return  maxStamina;
-    }
-
-    private void OnTriggerEnter(Collider other) { //Damage do inimigo (ainda nao ta a funcionar)
-        if(other.gameObject.tag == "Enemy Sword"){
-             PlayerStats playerStats = other.GetComponent<PlayerStats>();
-            if(playerStats != null){
-                playerStats.TakeDamage(10);
-            }
-        }
     }
 
     public void TakeDamage(int damage)
     {
+        if(isDead)
+        return;
         currenthealth = currenthealth - damage;
         healthBar.SetCurrentHealth(currenthealth);
         animatorHandler.PlayTargetAnimation("Male Damage Light", true);
@@ -74,12 +66,13 @@ public class PlayerStats : MonoBehaviour
         {
             currenthealth = 0;
             animatorHandler.PlayTargetAnimation("Male Die", true);
+            isDead = true;
             //Handle Player Death
             menusJogo.gameOver();
 
+
         }
     }
-
     public void TakeStaminaDamage(float stamina)
     {
         currentStamina = currentStamina - stamina;
@@ -103,22 +96,5 @@ public class PlayerStats : MonoBehaviour
         }
         
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  }
 }

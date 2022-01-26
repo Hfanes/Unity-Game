@@ -19,7 +19,7 @@ MonoBehaviour:
   OH_Light_Attack_1: Male Attack 1
   OH_Heavy_Attack_1: Male Attack 3
   lightDamage: 15
-  heavyDamage: 20
+  heavyDamage: 18
   baseStamina: 20
   lightAttackMultiplier: 1
   heavyAttackMultiplier: 2

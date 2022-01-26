@@ -8,11 +8,11 @@ namespace DJD{
 
 public class EnemyStats : MonoBehaviour
 {
-    public int healthLevel = 10;
     public int maxHealth;
     public int currentHealth;
     Animator animator;
     public GameObject enemy;
+    public bool isDead;
 
     private void Awake(){
         animator = GetComponent<Animator>();
@@ -25,12 +25,14 @@ public class EnemyStats : MonoBehaviour
 
     public int SetMaxHealthFromHealthLevel()
     {
-        maxHealth = healthLevel * 10;
+        maxHealth = 100;
         return  maxHealth;
     }
 
     public void TakeDamage(int damage)
     {
+        if(isDead)
+        return;
         currentHealth = currentHealth - damage;
         animator.Play("Damage");
 
@@ -38,8 +40,8 @@ public class EnemyStats : MonoBehaviour
         {
             currentHealth = 0;
             animator.Play("Death");
-            enemy.tag = "Untagged";
-            
+            // enemy.tag = "Untagged";
+            isDead = true;
         }
     }
 

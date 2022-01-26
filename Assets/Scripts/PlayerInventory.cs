@@ -7,7 +7,7 @@ public class PlayerInventory : MonoBehaviour
 {
     WeaponSlotManager WeaponSlotManager;
     public WeaponItem rightWeapon;
-    public WeaponItem unarmedWeapon;
+    // public WeaponItem unarmedWeapon;
     public List<WeaponItem> weaponsInventory;
     public List<Key.KeyType> keyList;
 
@@ -46,14 +46,10 @@ public class PlayerInventory : MonoBehaviour
      }
 
      private void OnTriggerEnter(Collider other) {
-        //  Key key = other.GetComponent<Key>();
-        //  if(key != null)
-        //  {
-        //      AddKey(key.GetKeyType());
-        //      Destroy(key.gameObject);
-        //  }
 
          KeyDoor keyDoor = other.GetComponent<KeyDoor>();
+         OpenGate openGate = other.GetComponent<OpenGate>();
+
          if(keyDoor !=null)
          {
              if(ContainsKey(keyDoor.GetKeyType()))
@@ -61,6 +57,16 @@ public class PlayerInventory : MonoBehaviour
                  //temos a chave necessaria
                  RemoveKey(keyDoor.GetKeyType());
                  keyDoor.OpenDoor();
+             }
+            
+         }
+         else if(openGate != null)
+         {
+             if(ContainsKey(openGate.GetKeyType()))
+             {
+                 //temos a chave necessaria
+                 RemoveKey(openGate.GetKeyType());
+                 openGate.OpenDoor();
              }
          }
      }

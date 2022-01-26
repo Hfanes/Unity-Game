@@ -38,7 +38,7 @@ namespace DJD{
         [SerializeField] float rotationSpeed = 10;
         [SerializeField] float fallingSpeed = 50;
         [SerializeField] int rollStaminaCost = 10;
-        [SerializeField] float sprintStaminaCost = 0.1f;
+        // [SerializeField] float sprintStaminaCost = 0.1f;
 
 
 
@@ -241,7 +241,7 @@ namespace DJD{
                     animatorHandler.PlayTargetAnimation("Male Jump Up", false);
                     Debug.Log("Jump");
 
-                    rigidbody.AddForce(new Vector3(0, 100, 0),  ForceMode.Impulse);
+                    //rigidbody.AddForce(new Vector3(0, 100, 0),  ForceMode.Impulse);
                   
                     if(playerManager.isInAir){
                         rigidbody.AddForce(-Vector3.up * fallingSpeed);

@@ -11,15 +11,6 @@ public class EnemyAnimatorManager : AnimatorManager
         anim = GetComponent<Animator>();
         enemyMovement = GetComponent<EnemyMovement>();
     }
-
-    private void OnAnimatorMove() {
-    }
-
-
-
-
-
-
  }
 }
 

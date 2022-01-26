@@ -11,7 +11,7 @@ public class EnemyAttackAction : EnemyAction
 {
 
     public int attackScore = 3;
-    public float recoveryTime = 2; 
+    public float recoveryTime = 8; 
     public float maximumAttackAngle = 35; 
     public float minimumAttackAngle = -35;
     

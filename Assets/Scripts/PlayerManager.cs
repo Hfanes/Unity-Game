@@ -26,6 +26,7 @@ namespace DJD{
         public bool isSprinting;
         public bool isInAir;
         public bool isGrounded;
+        ChangeScene changeScene;
 
 
 
@@ -44,6 +45,7 @@ namespace DJD{
             interactableUI = FindObjectOfType<InteractableUI>();
             playerStats = GetComponent<PlayerStats>();
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            changeScene = FindObjectOfType<ChangeScene>();
 
         }
 
@@ -168,14 +170,7 @@ namespace DJD{
                     BookPopUp.SetActive(false);
 
                 }
-
-                // if(BookPopUp != null && inputHandler.e_Input)
-                // {
-                //     BookPopUp.SetActive(false);
-                // }
             }
-
-
         }
 
         public void Open(){
@@ -194,20 +189,6 @@ namespace DJD{
                     }
                 }
             }
-            else
-            {
-                // if(InteractionBookPopUp != null)
-                // {
-                //     InteractionBookPopUp.SetActive(false); //Se sair da zona o pop up desparece
-                // }
-
-                // if(BookPopUp != null && inputHandler.e_Input)
-                // {
-                //     BookPopUp.SetActive(false);
-                // }
-            }
-
-
         }
 
         public void OpenChestInteraction(Transform PlayerStandChest)
@@ -216,12 +197,6 @@ namespace DJD{
             transform.position = PlayerStandChest.transform.position;
             animatorHandler.PlayTargetAnimation("Chest Open", true);
         }
-
-
-        
-
-
-
     }
 }
 
