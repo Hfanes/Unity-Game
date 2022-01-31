@@ -48,7 +48,6 @@ public class InputHandler : MonoBehaviour
 
 
 
-
     public void OnEnable(){
         if(inputActions == null){
             inputActions = new PlayerControls();
