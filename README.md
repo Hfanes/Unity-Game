@@ -7,16 +7,22 @@ Unity RPG Adventure Game - Third Person and Dark Souls style
 Key features:
 
 Health and Stamina Bar
+
 Movement - Attack, Rolling, Sprint
+
 3 Different Swords with different damages
+
 Lootable Chests (Pick up swords and keys)
+
 Different weapons have different damage
+
 Keys are important for opening doors and completing levels
+
 Boss Fight
 
 
 <div> 
-
+###
 Key Pick Up 
 ![UnityGame1](https://github.com/Hfanes/Unity-Game/assets/57834109/b5d4cbcd-d93e-46a7-8436-22e38132e2b5)
 
