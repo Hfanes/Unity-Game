@@ -8,10 +8,6 @@ Movement - Attack, Rolling, Sprint
 Lootable Chests (Pick up swords and keys)
 Boss Fight
 
-<div align="center">
-  <img src="https://github.com/Hfanes/Unity-Game/raw/assets/57834109/212d7625-0a68-4c5a-b352-ee3ddfe28c69" width="100">
-</div>
-
 ![page](https://github.com/Hfanes/Unity-Game/assets/57834109/212d7625-0a68-4c5a-b352-ee3ddfe28c69)
 
 ![finalbook](https://github.com/Hfanes/Unity-Game/assets/57834109/e1b2b6c6-955b-4a6c-9743-50baa606ab86)
